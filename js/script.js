@@ -3,29 +3,47 @@ window.onload = function() {
 }
 
 var time = undefined
-var interval = 10
+var timer = 0
+var reset = true
+var cycle = 10 // ms
+var delay = 1000
 var lastSecond = undefined
 var lastMinute = undefined
 
 function refresh() {
   time = getTime()
+
+  if (timer === 0 && reset === true) {
+    reset = false
+    dropClock()
+    console.log('dropClock')
+  }
+
   if (time.second !== lastSecond) {
     logTime()
     lastSecond = time.second
+    timer++
+    console.log('timer:', timer)
   }
+
   if (time.minute !== lastMinute) {
     if (lastMinute !== undefined) {
-      dropClock()
+      reset = true
+      console.log('reset')
     }
     lastMinute = time.minute
   }
-  setInterval(function() {
+
+  if (timer === 60) {
+    timer = 0
+  }
+
+  setTimeout(function() {
     refresh()
-  }, interval)
+  }, cycle)
 }
 
 function dropClock() {
-  let delay = 500
   let hour = splitTimeValue(time.hour)
   let minute = splitTimeValue(time.minute)
   let startSequence = generateRandomStartSequence([0, 1, 2, 3])
@@ -51,7 +69,7 @@ function getRandomElementFromArray(items) {
 }
 
 function switchElementWithDelay(position, value, delay) {
-  setInterval(function() {
+  setTimeout(function() {
     switchElement(position, value)
   }, delay)
 }

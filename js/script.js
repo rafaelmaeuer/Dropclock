@@ -9,6 +9,7 @@ var cycle = 10 // ms
 var delay = 1000
 var lastSecond = undefined
 var lastMinute = undefined
+var color = 'black'
 
 function refresh() {
   time = getTime()
@@ -77,8 +78,13 @@ function switchElementWithDelay(position, value, delay) {
 function switchElement(position, value) {
   let placeholder = document.getElementById(position)
   let element = document.getElementById(value)
-  removeAllChildrenFromPlaceHolder(placeholder)
-  addChildToPlaceHolder(placeholder, element)
+  placeholder.style.opacity = 0
+  setTimeout(function() {
+    removeAllChildrenFromPlaceHolder(placeholder)
+    addChildToPlaceHolder(placeholder, element)
+    startVideoInPlaceHolder(placeholder)
+    placeholder.style.opacity = 1
+  }, 500)
 }
 
 function addChildToPlaceHolder(placeholder, element) {
@@ -92,8 +98,56 @@ function removeAllChildrenFromPlaceHolder(parent) {
   }
 }
 
+function startVideoInPlaceHolder(placeholder) {
+  placeholder.children[0].children[0].autoplay = true
+}
+
 function splitTimeValue(value) {
   return [value.substr(0, 1), value.substr(1, 1)]
+}
+
+function emptyAllPlaceHolders() {
+  let container = document.getElementById('container')
+  for (i = 0; i < container.children.length; i++) {
+    let placeholder = document.getElementById('pos' + i)
+    removeAllChildrenFromPlaceHolder(placeholder)
+  }
+}
+
+function restart() {
+  console.log('restart')
+  emptyAllPlaceHolders()
+  reset = true
+  timer = 0
+}
+
+function invertColors() {
+  let newColor = color === 'white' ? 'black' : 'white'
+  console.log('switching from ' + color + ' to ' + newColor)
+  let pool = document.getElementById('pool')
+  for (i = 0; i < pool.children.length; i++) {
+    let element = pool.children[i].children[0]
+    element.innerHTML = element.innerHTML.replace(color, newColor)
+    element.innerHTML = element.innerHTML.replace(color[0] + i, newColor[0] + i)
+  }
+  color = color === 'black' ? 'white' : 'black'
+  document.body.style.backgroundColor = color === 'black' ? '#000000' : '#f3f2f4'
+  restart()
+}
+
+function fadeOut(placeholder) {
+  for (i = 0; i < 10; i++) {
+    placeholder.style.opacity -= 0.1
+  }
+}
+
+window.onkeypress = function(event) {
+  // console.log(event.keyCode)
+  if (event.keyCode == 105) {
+    invertColors()
+  } else if (event.keyCode == 114) {
+    restart()
+  }
 }
 
 function getTime() {

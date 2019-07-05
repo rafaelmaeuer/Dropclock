@@ -20,6 +20,15 @@ body {
   align-content: center;
 }
 
+#pos0,
+#pos1,
+#pos2,
+#pos3 {
+  opacity: 1;
+  -webkit-transition: opacity 500ms linear;
+  transition: opacity 500ms linear;
+}
+
 .placeholder,
 .element,
 video {

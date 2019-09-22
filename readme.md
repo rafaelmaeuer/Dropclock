@@ -10,19 +10,19 @@ This is an adaption of the Dropclock Screensaver for running in web browsers.
 
 ### Platform
 
-This version is build to run on a Raspberry Pi 3+, therefore mp4 instead of swf files were necessary due to performance issues.
+This version is build to run on a Raspberry Pi 3+, therefore mp4 instead of swf files are necessary due to performance issues.
 <br>The original version (using flash) might be available later.
 
 ### Progress
 
 ToDo:
 
-- [ ] Handle start situation (black screen on chrome)
-- [ ] Optimize asset loading
-- [ ] Upload assets
+- [ ] Fix start problem on chrome (black screen)
+- [ ] Optimize asset loading (spinner/bar while loading)
 
 Done:
 
+- [x] Upload assets
 - [x] Add random start delay
 - [x] Implement basic swf playback
 - [x] Setup base layout

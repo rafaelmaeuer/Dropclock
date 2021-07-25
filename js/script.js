@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = () => {
   refresh()
 }
 
@@ -39,7 +39,7 @@ function refresh() {
     timer = 0
   }
 
-  setTimeout(function() {
+  setTimeout(() => {
     refresh()
   }, cycle)
 }
@@ -70,7 +70,7 @@ function getRandomElementFromArray(items) {
 }
 
 function switchElementWithDelay(position, value, delay) {
-  setTimeout(function() {
+  setTimeout(() => {
     switchElement(position, value)
   }, delay)
 }
@@ -79,7 +79,7 @@ function switchElement(position, value) {
   let placeholder = document.getElementById(position)
   let element = document.getElementById(value)
   placeholder.style.opacity = 0
-  setTimeout(function() {
+  setTimeout(() => {
     removeAllChildrenFromPlaceHolder(placeholder)
     addChildToPlaceHolder(placeholder, element)
     startVideoInPlaceHolder(placeholder)
@@ -141,7 +141,7 @@ function fadeOut(placeholder) {
   }
 }
 
-window.onkeypress = function(event) {
+window.onkeypress = event => {
   // console.log(event.keyCode)
   if (event.keyCode == 105) {
     invertColors()

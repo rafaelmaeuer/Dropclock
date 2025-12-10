@@ -1,18 +1,18 @@
 # DROPCLOCK
 
-A Web Version of the famous Dropclock Screensaver. Find a live version [here](https://rafaelmaeuer.de/clock/dropclock).
+A Web Version of the famous Dropclock Screensaver. Find a live version [here](https://static.rafaelmaeuer.de/clock/dropclock).
 
 ![Dropclock Web](img/preview.gif)
 
-### Information
+## Information
 
 This is an adaption of the Dropclock Screensaver to run in web browsers. Press `i` to invert colors from black to white, press `r` to reload.
 
-### Platform
+## Platform
 
 This version is build to run on a Raspberry Pi 3+, therefore mp4 instead of swf files are necessary due to performance issues. The original version (using flash) might be available later.
 
-### Improvements
+## Improvements
 
 - [x] Fix chrome problem (no autoplay)
 - [x] Add option for color inversion (white mode)
@@ -23,6 +23,6 @@ This version is build to run on a Raspberry Pi 3+, therefore mp4 instead of swf 
 - [x] Implement basic swf playback
 - [x] Setup base layout
 
-### Credits
+## Credits
 
 Original taken from [scr.sc](https://scr.sc)
